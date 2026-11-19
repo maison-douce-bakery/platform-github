@@ -12,11 +12,11 @@ locals {
       auto_init   = false
       required_checks = [
         "terraform / static checks",
-        "plan (bootstrap)",
-        "plan (account-baseline)",
-        "plan (iam-baseline)",
-        "plan (ci-access)",
-        "plan (audit)",
+        "plan / plan (bootstrap)",
+        "plan / plan (account-baseline)",
+        "plan / plan (iam-baseline)",
+        "plan / plan (ci-access)",
+        "plan / plan (audit)",
       ]
     }
     "platform-github" = {
