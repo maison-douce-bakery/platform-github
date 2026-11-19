@@ -31,6 +31,9 @@ locals {
     }
   }
 
+  # Repos whose tags are releases that consumers pin. Their tags can't be moved or deleted.
+  tag_protected_repositories = ["platform-terraform-modules"]
+
   # Org-level Actions variables. They aren't secret, so Terraform manages their values.
   org_variables = {
     AWS_REGION = {

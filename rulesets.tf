@@ -48,3 +48,26 @@ resource "github_repository_ruleset" "main" {
     }
   }
 }
+
+# Release tags are immutable: a moved or deleted tag silently changes what consumers run.
+# No bypass actors, same as protect-main. Creation stays open to anyone with write access.
+resource "github_repository_ruleset" "tags" {
+  for_each = toset(local.tag_protected_repositories)
+
+  name        = "protect-tags"
+  repository  = github_repository.this[each.key].name
+  target      = "tag"
+  enforcement = "active"
+
+  conditions {
+    ref_name {
+      include = ["~ALL"]
+      exclude = []
+    }
+  }
+
+  rules {
+    update   = true
+    deletion = true
+  }
+}
