@@ -11,7 +11,7 @@ locals {
       description = "Base AWS layer: Terraform state, account guardrails, CI access and audit."
       auto_init   = false
       required_checks = [
-        "static checks",
+        "terraform / static checks",
         "plan (bootstrap)",
         "plan (account-baseline)",
         "plan (iam-baseline)",
@@ -22,12 +22,12 @@ locals {
     "platform-github" = {
       description     = "GitHub organization settings, repositories and rulesets as code."
       auto_init       = true
-      required_checks = ["static checks"]
+      required_checks = ["terraform / static checks"]
     }
     "platform-terraform-modules" = {
       description     = "Reusable, versioned Terraform modules for the platform."
       auto_init       = true
-      required_checks = ["static checks"]
+      required_checks = ["terraform / static checks"]
     }
     "platform-ci-workflows" = {
       description     = "Reusable GitHub Actions workflows for the platform repos."
