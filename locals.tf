@@ -35,9 +35,12 @@ locals {
       required_checks = ["actionlint"]
     }
     "platform-infra-live" = {
-      description     = "Live AWS infrastructure per environment, planned on PRs and applied by CI on main."
-      auto_init       = true
-      required_checks = ["terraform / static checks"]
+      description = "Live AWS infrastructure per environment, planned on PRs and applied by CI on main."
+      auto_init   = true
+      required_checks = [
+        "terraform / static checks",
+        "plan / plan (dev/ap-southeast-2/network)",
+      ]
     }
   }
 
