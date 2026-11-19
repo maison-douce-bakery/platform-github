@@ -34,6 +34,11 @@ locals {
       auto_init       = true
       required_checks = ["actionlint"]
     }
+    "platform-infra-live" = {
+      description     = "Live AWS infrastructure per environment, planned on PRs and applied by CI on main."
+      auto_init       = true
+      required_checks = ["terraform / static checks"]
+    }
   }
 
   # Repos whose tags are releases that consumers pin. Their tags can't be moved or deleted.
@@ -49,15 +54,15 @@ locals {
     AWS_CI_PLAN_ROLE_ARN = {
       value        = "arn:aws:iam::452258152479:role/platform/mdb-shared-ci-plan"
       visibility   = "selected"
-      repositories = ["platform-aws-foundation"]
+      repositories = ["platform-aws-foundation", "platform-infra-live"]
     }
   }
 
   # Org-level Actions secrets. Their values are set with `gh secret set` and never stored here,
   # because Terraform would keep them in state. Only which repos can read them is managed.
   org_secret_repositories = {
-    AWS_CI_PLAN_ACCESS_KEY_ID     = ["platform-aws-foundation"]
-    AWS_CI_PLAN_SECRET_ACCESS_KEY = ["platform-aws-foundation"]
+    AWS_CI_PLAN_ACCESS_KEY_ID     = ["platform-aws-foundation", "platform-infra-live"]
+    AWS_CI_PLAN_SECRET_ACCESS_KEY = ["platform-aws-foundation", "platform-infra-live"]
   }
 
   # Third-party actions allowed in the org, on top of GitHub-owned ones. They must be pinned by SHA.
