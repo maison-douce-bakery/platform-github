@@ -65,6 +65,18 @@ locals {
     AWS_CI_PLAN_SECRET_ACCESS_KEY = ["platform-aws-foundation", "platform-infra-live"]
   }
 
+  # Deployment environments. Only main can deploy, so PR code never sees their secrets.
+  # Secret values are set with `gh secret set --env`.
+  environments = {
+    "platform-infra-live/dev" = {
+      repository = "platform-infra-live"
+      name       = "dev"
+      variables = {
+        AWS_CI_APPLY_ROLE_ARN = "arn:aws:iam::452258152479:role/platform/mdb-shared-ci-apply"
+      }
+    }
+  }
+
   # Third-party actions allowed in the org, on top of GitHub-owned ones. They must be pinned by SHA.
   allowed_actions = [
     "hashicorp/setup-terraform@*",
