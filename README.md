@@ -27,7 +27,7 @@ GitHub organization settings for `maison-douce-bakery`, managed with Terraform:
 
 1. Create a branch and edit `locals.tf`. Most changes are a new repo, a new required check, or a new allowed action.
 2. Run `terraform plan` and `terraform apply` with admin credentials:
-   - GitHub: `gh auth refresh -h github.com -s admin:org`, then `export GITHUB_TOKEN="$(gh auth token)"`
+   - GitHub: `gh auth refresh -h github.com -s admin:org`. The provider uses the `gh` token, or `GITHUB_TOKEN` if it is set
    - AWS (state backend): `aws login`
 3. Open a PR. CI runs `fmt`, `validate` and `tflint`.
 4. Merge with rebase, then drop the scope again with `gh auth refresh -h github.com -r admin:org`.
