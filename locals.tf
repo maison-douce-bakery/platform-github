@@ -24,6 +24,11 @@ locals {
       auto_init       = true
       required_checks = ["static checks"]
     }
+    "platform-terraform-modules" = {
+      description     = "Reusable, versioned Terraform modules for the platform."
+      auto_init       = true
+      required_checks = ["static checks"]
+    }
   }
 
   # Org-level Actions variables. They aren't secret, so Terraform manages their values.
