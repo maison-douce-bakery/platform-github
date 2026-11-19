@@ -29,10 +29,15 @@ locals {
       auto_init       = true
       required_checks = ["static checks"]
     }
+    "platform-ci-workflows" = {
+      description     = "Reusable GitHub Actions workflows for the platform repos."
+      auto_init       = true
+      required_checks = ["actionlint"]
+    }
   }
 
   # Repos whose tags are releases that consumers pin. Their tags can't be moved or deleted.
-  tag_protected_repositories = ["platform-terraform-modules"]
+  tag_protected_repositories = ["platform-terraform-modules", "platform-ci-workflows"]
 
   # Org-level Actions variables. They aren't secret, so Terraform manages their values.
   org_variables = {
