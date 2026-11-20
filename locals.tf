@@ -46,11 +46,10 @@ locals {
         "plan / plan (dev/ap-southeast-2/dagu)",
       ]
     }
-    # No CI yet: its checks are added once the first workflow has reported them.
     "commerce-api" = {
       description     = "Maison Douce operational database: schema, opening seed and the operations simulator."
       auto_init       = true
-      required_checks = []
+      required_checks = ["test"]
     }
   }
 
