@@ -43,6 +43,7 @@ locals {
         "plan / plan (dev/ap-southeast-2/ecs)",
         "plan / plan (dev/ap-southeast-2/rds)",
         "plan / plan (dev/ap-southeast-2/marmot)",
+        "plan / plan (dev/ap-southeast-2/dagu)",
       ]
     }
   }
