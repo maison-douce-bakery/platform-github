@@ -41,6 +41,7 @@ locals {
         "terraform / static checks",
         "plan / plan (dev/ap-southeast-2/network)",
         "plan / plan (dev/ap-southeast-2/ecs)",
+        "plan / plan (dev/ap-southeast-2/rds)",
       ]
     }
   }
