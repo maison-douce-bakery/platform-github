@@ -52,6 +52,12 @@ locals {
       auto_init       = true
       required_checks = ["test"]
     }
+    # No CI yet: its checks are added once the first workflow has reported them.
+    "platform-deployments" = {
+      description     = "GitOps for application services: per-environment ECS task definitions and image digests."
+      auto_init       = true
+      required_checks = []
+    }
   }
 
   # Repos whose tags are releases that consumers pin. Their tags can't be moved or deleted.
@@ -74,15 +80,22 @@ locals {
       visibility   = "selected"
       repositories = ["commerce-api"]
     }
+    AWS_CI_DEPLOY_ROLE_ARN = {
+      value        = "arn:aws:iam::452258152479:role/platform/mdb-shared-ci-deploy"
+      visibility   = "selected"
+      repositories = ["platform-deployments"]
+    }
   }
 
   # Org-level Actions secrets. Their values are set with `gh secret set` and never stored here,
   # because Terraform would keep them in state. Only which repos can read them is managed.
   org_secret_repositories = {
-    AWS_CI_PLAN_ACCESS_KEY_ID     = ["platform-aws-foundation", "platform-infra-live"]
-    AWS_CI_PLAN_SECRET_ACCESS_KEY = ["platform-aws-foundation", "platform-infra-live"]
-    AWS_CI_PUSH_ACCESS_KEY_ID     = ["commerce-api"]
-    AWS_CI_PUSH_SECRET_ACCESS_KEY = ["commerce-api"]
+    AWS_CI_PLAN_ACCESS_KEY_ID       = ["platform-aws-foundation", "platform-infra-live"]
+    AWS_CI_PLAN_SECRET_ACCESS_KEY   = ["platform-aws-foundation", "platform-infra-live"]
+    AWS_CI_PUSH_ACCESS_KEY_ID       = ["commerce-api"]
+    AWS_CI_PUSH_SECRET_ACCESS_KEY   = ["commerce-api"]
+    AWS_CI_DEPLOY_ACCESS_KEY_ID     = ["platform-deployments"]
+    AWS_CI_DEPLOY_SECRET_ACCESS_KEY = ["platform-deployments"]
   }
 
   # Deployment environments. Only main can deploy, so PR code never sees their secrets.
@@ -94,6 +107,11 @@ locals {
       variables = {
         AWS_CI_APPLY_ROLE_ARN = "arn:aws:iam::452258152479:role/platform/mdb-shared-ci-apply"
       }
+    }
+    "platform-deployments/dev" = {
+      repository = "platform-deployments"
+      name       = "dev"
+      variables  = {}
     }
   }
 
