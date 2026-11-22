@@ -73,7 +73,7 @@ locals {
     AWS_CI_PLAN_ROLE_ARN = {
       value        = "arn:aws:iam::452258152479:role/platform/mdb-shared-ci-plan"
       visibility   = "selected"
-      repositories = ["platform-aws-foundation", "platform-infra-live"]
+      repositories = ["platform-aws-foundation", "platform-infra-live", "platform-deployments"]
     }
     AWS_CI_PUSH_ROLE_ARN = {
       value        = "arn:aws:iam::452258152479:role/platform/mdb-shared-ci-push"
@@ -90,8 +90,8 @@ locals {
   # Org-level Actions secrets. Their values are set with `gh secret set` and never stored here,
   # because Terraform would keep them in state. Only which repos can read them is managed.
   org_secret_repositories = {
-    AWS_CI_PLAN_ACCESS_KEY_ID       = ["platform-aws-foundation", "platform-infra-live"]
-    AWS_CI_PLAN_SECRET_ACCESS_KEY   = ["platform-aws-foundation", "platform-infra-live"]
+    AWS_CI_PLAN_ACCESS_KEY_ID       = ["platform-aws-foundation", "platform-infra-live", "platform-deployments"]
+    AWS_CI_PLAN_SECRET_ACCESS_KEY   = ["platform-aws-foundation", "platform-infra-live", "platform-deployments"]
     AWS_CI_PUSH_ACCESS_KEY_ID       = ["commerce-api"]
     AWS_CI_PUSH_SECRET_ACCESS_KEY   = ["commerce-api"]
     AWS_CI_DEPLOY_ACCESS_KEY_ID     = ["platform-deployments"]
