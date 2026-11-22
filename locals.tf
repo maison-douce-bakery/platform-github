@@ -90,12 +90,10 @@ locals {
   # Org-level Actions secrets. Their values are set with `gh secret set` and never stored here,
   # because Terraform would keep them in state. Only which repos can read them is managed.
   org_secret_repositories = {
-    AWS_CI_PLAN_ACCESS_KEY_ID       = ["platform-aws-foundation", "platform-infra-live"]
-    AWS_CI_PLAN_SECRET_ACCESS_KEY   = ["platform-aws-foundation", "platform-infra-live"]
-    AWS_CI_PUSH_ACCESS_KEY_ID       = ["commerce-api"]
-    AWS_CI_PUSH_SECRET_ACCESS_KEY   = ["commerce-api"]
-    AWS_CI_DEPLOY_ACCESS_KEY_ID     = ["platform-deployments"]
-    AWS_CI_DEPLOY_SECRET_ACCESS_KEY = ["platform-deployments"]
+    AWS_CI_PLAN_ACCESS_KEY_ID     = ["platform-aws-foundation", "platform-infra-live"]
+    AWS_CI_PLAN_SECRET_ACCESS_KEY = ["platform-aws-foundation", "platform-infra-live"]
+    AWS_CI_PUSH_ACCESS_KEY_ID     = ["commerce-api"]
+    AWS_CI_PUSH_SECRET_ACCESS_KEY = ["commerce-api"]
   }
 
   # Deployment environments. Only main can deploy, so PR code never sees their secrets.
