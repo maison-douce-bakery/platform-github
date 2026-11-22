@@ -52,11 +52,13 @@ locals {
       auto_init       = true
       required_checks = ["test"]
     }
-    # No CI yet: its checks are added once the first workflow has reported them.
     "platform-deployments" = {
-      description     = "GitOps for application services: per-environment ECS task definitions and image digests."
-      auto_init       = true
-      required_checks = []
+      description = "GitOps for application services: per-environment ECS task definitions and image digests."
+      auto_init   = true
+      required_checks = [
+        "terraform / static checks",
+        "plan / plan (dev/ap-southeast-2/commerce-api)",
+      ]
     }
   }
 
