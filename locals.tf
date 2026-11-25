@@ -39,12 +39,10 @@ locals {
       auto_init   = true
       required_checks = [
         "terraform / static checks",
-        "plan / plan (dev/ap-southeast-2/network)",
-        "plan / plan (dev/ap-southeast-2/ecs)",
-        "plan / plan (dev/ap-southeast-2/rds)",
-        "plan / plan (dev/ap-southeast-2/marmot)",
-        "plan / plan (dev/ap-southeast-2/dagu)",
-        "plan / plan (dev/ap-southeast-2/commerce)",
+        "plan / plan (prod/ap-southeast-2/network)",
+        "plan / plan (prod/ap-southeast-2/ecs)",
+        "plan / plan (prod/ap-southeast-2/rds)",
+        "plan / plan (prod/ap-southeast-2/commerce)",
       ]
     }
     "commerce-api" = {
@@ -103,9 +101,9 @@ locals {
   # Deployment environments. Only main can deploy, so PR code never sees their secrets.
   # Secret values are set with `gh secret set --env`.
   environments = {
-    "platform-infra-live/dev" = {
+    "platform-infra-live/prod" = {
       repository = "platform-infra-live"
-      name       = "dev"
+      name       = "prod"
       variables = {
         AWS_CI_APPLY_ROLE_ARN = "arn:aws:iam::452258152479:role/platform/mdb-shared-ci-apply"
       }
