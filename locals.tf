@@ -41,6 +41,7 @@ locals {
         "terraform / static checks",
         "plan / plan (prod/ap-southeast-2/network)",
         "plan / plan (prod/ap-southeast-2/ecs)",
+        "plan / plan (prod/ap-southeast-2/data-platform)",
         "plan / plan (prod/ap-southeast-2/rds)",
         "plan / plan (prod/ap-southeast-2/commerce)",
       ]
