@@ -51,6 +51,11 @@ locals {
       auto_init       = true
       required_checks = ["test"]
     }
+    "data-platform" = {
+      description     = "Data platform image: Dagu with dbt, the DAGs and the dbt project."
+      auto_init       = true
+      required_checks = ["build"]
+    }
     "platform-deployments" = {
       description = "GitOps for application services: per-environment ECS task definitions and image digests."
       auto_init   = true
@@ -79,7 +84,7 @@ locals {
     AWS_CI_PUSH_ROLE_ARN = {
       value        = "arn:aws:iam::452258152479:role/platform/mdb-shared-ci-push"
       visibility   = "selected"
-      repositories = ["commerce-api"]
+      repositories = ["commerce-api", "data-platform"]
     }
     AWS_CI_DEPLOY_ROLE_ARN = {
       value        = "arn:aws:iam::452258152479:role/platform/mdb-shared-ci-deploy"
@@ -93,8 +98,8 @@ locals {
   org_secret_repositories = {
     AWS_CI_PLAN_ACCESS_KEY_ID       = ["platform-aws-foundation", "platform-infra-live", "platform-deployments"]
     AWS_CI_PLAN_SECRET_ACCESS_KEY   = ["platform-aws-foundation", "platform-infra-live", "platform-deployments"]
-    AWS_CI_PUSH_ACCESS_KEY_ID       = ["commerce-api"]
-    AWS_CI_PUSH_SECRET_ACCESS_KEY   = ["commerce-api"]
+    AWS_CI_PUSH_ACCESS_KEY_ID       = ["commerce-api", "data-platform"]
+    AWS_CI_PUSH_SECRET_ACCESS_KEY   = ["commerce-api", "data-platform"]
     AWS_CI_DEPLOY_ACCESS_KEY_ID     = ["platform-deployments"]
     AWS_CI_DEPLOY_SECRET_ACCESS_KEY = ["platform-deployments"]
   }
