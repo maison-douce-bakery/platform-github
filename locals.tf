@@ -55,7 +55,7 @@ locals {
       auto_init   = true
       required_checks = [
         "terraform / static checks",
-        "plan / plan (dev/ap-southeast-2/commerce-api)",
+        "plan / plan (prod/ap-southeast-2/commerce-api)",
       ]
     }
   }
@@ -108,9 +108,9 @@ locals {
         AWS_CI_APPLY_ROLE_ARN = "arn:aws:iam::452258152479:role/platform/mdb-shared-ci-apply"
       }
     }
-    "platform-deployments/dev" = {
+    "platform-deployments/prod" = {
       repository = "platform-deployments"
-      name       = "dev"
+      name       = "prod"
       variables  = {}
     }
   }
