@@ -45,6 +45,7 @@ locals {
         "plan / plan (prod/ap-southeast-2/rds)",
         "plan / plan (prod/ap-southeast-2/commerce)",
         "plan / plan (prod/ap-southeast-2/datalake)",
+        "plan / plan (prod/ap-southeast-2/ingest-open-meteo)",
       ]
     }
     "commerce-api" = {
