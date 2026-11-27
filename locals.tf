@@ -60,6 +60,11 @@ locals {
       auto_init       = true
       required_checks = ["build"]
     }
+    "data-catalog" = {
+      description     = "Runtime image of the data catalog: Marmot with only the plugins we use."
+      auto_init       = true
+      required_checks = ["build"]
+    }
     "data-transform" = {
       description     = "dbt project of the data platform: models, tests and snapshots."
       auto_init       = true
@@ -98,7 +103,7 @@ locals {
     AWS_CI_PUSH_ROLE_ARN = {
       value        = "arn:aws:iam::452258152479:role/platform/mdb-shared-ci-push"
       visibility   = "selected"
-      repositories = ["commerce-api", "data-orchestration", "data-ingestion"]
+      repositories = ["commerce-api", "data-orchestration", "data-ingestion", "data-catalog"]
     }
     AWS_CI_DEPLOY_ROLE_ARN = {
       value        = "arn:aws:iam::452258152479:role/platform/mdb-shared-ci-deploy"
@@ -112,8 +117,8 @@ locals {
   org_secret_repositories = {
     AWS_CI_PLAN_ACCESS_KEY_ID       = ["platform-aws-foundation", "platform-infra-live", "platform-deployments"]
     AWS_CI_PLAN_SECRET_ACCESS_KEY   = ["platform-aws-foundation", "platform-infra-live", "platform-deployments"]
-    AWS_CI_PUSH_ACCESS_KEY_ID       = ["commerce-api", "data-orchestration", "data-ingestion"]
-    AWS_CI_PUSH_SECRET_ACCESS_KEY   = ["commerce-api", "data-orchestration", "data-ingestion"]
+    AWS_CI_PUSH_ACCESS_KEY_ID       = ["commerce-api", "data-orchestration", "data-ingestion", "data-catalog"]
+    AWS_CI_PUSH_SECRET_ACCESS_KEY   = ["commerce-api", "data-orchestration", "data-ingestion", "data-catalog"]
     AWS_CI_DEPLOY_ACCESS_KEY_ID     = ["platform-deployments"]
     AWS_CI_DEPLOY_SECRET_ACCESS_KEY = ["platform-deployments"]
   }
